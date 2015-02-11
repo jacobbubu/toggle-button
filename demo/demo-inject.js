@@ -1,3 +1,5 @@
+"use strict";
+
 var domready = require('domready');
 var toggleButton = require('../index.js');
 

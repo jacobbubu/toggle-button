@@ -1,3 +1,5 @@
+"use strict";
+
 var domready = require('domready');
 
 module.exports = function(cb, options) {
@@ -10,23 +12,23 @@ module.exports = function(cb, options) {
     options = options||{};
     var stopped = options.stopped||false
     var hasWidth = typeof options.width === 'number',
-        hasHeight = typeof options.height === 'number';
+        hasHeight = typeof options.height === 'number',
+        buttonId;
 
     if (typeof options.id === 'string')
         buttonId = options.id;
     else
         buttonId = 'toggleButton';
 
-    buttonWidth = hasWidth ? options.width : window.innerWidth;
-    buttonHeight = hasHeight ? options.height : window.innerHeight;
-    startedCaption = options.startedCaption || 'Stop';
-    stoppedCaption = options.stoppedCaption ||'Start';
+    var buttonWidth = hasWidth ? options.width : window.innerWidth;
+    var buttonHeight = hasHeight ? options.height : window.innerHeight;
+    var startedCaption = options.startedCaption || 'Stop';
+    var stoppedCaption = options.stoppedCaption ||'Start';
 
-    var toTop, toRight, toBottom, toLeft;
-    toTop = parseInt(options.toTop);
-    toRight = parseInt(options.toRight);
-    toBottom = parseInt(options.toBottom);
-    toLeft = parseInt(options.toLeft);
+    var toTop = parseInt(options.toTop);
+    var toRight = parseInt(options.toRight);
+    var toBottom = parseInt(options.toBottom);
+    var toLeft = parseInt(options.toLeft);
 
     domready(function() {
         var buttonbg, button;
@@ -85,7 +87,7 @@ module.exports = function(cb, options) {
             button = options.button;
 
         var stateToCaption = function(curr) {
-             button.innerText = curr ? stoppedCaption : startedCaption;
+            button.innerHTML = curr ? stoppedCaption : startedCaption;
         };
         stateToCaption(stopped);
 
