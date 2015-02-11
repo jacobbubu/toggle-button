@@ -1,6 +1,7 @@
 "use strict";
 
 var domready = require('domready');
+var encode = require('he').encode
 var idCounter = 0;
 
 module.exports = function(cb, options) {
@@ -23,8 +24,8 @@ module.exports = function(cb, options) {
 
     var buttonWidth = hasWidth ? options.width : window.innerWidth;
     var buttonHeight = hasHeight ? options.height : window.innerHeight;
-    var startedCaption = options.startedCaption || 'Stop';
-    var stoppedCaption = options.stoppedCaption ||'Start';
+    var startedCaption = encode(options.startedCaption || 'Stop');
+    var stoppedCaption = encode(options.stoppedCaption ||'Start');
 
     var toTop = parseInt(options.toTop);
     var toRight = parseInt(options.toRight);
@@ -52,7 +53,7 @@ module.exports = function(cb, options) {
                     'padding: 2px 6px 3px 6px;' +
                     'background-color: #fff;' +
                     'border: 1px #ccc solid;'
-                '}\n'
+                '}\n' +
                 'div.btnbg:hover button {' +
                     'text-shadow: 0px 0px 3px #ccc;' +
                 '}'
