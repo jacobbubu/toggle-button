@@ -1,6 +1,7 @@
 "use strict";
 
 var domready = require('domready');
+var idCounter = 0;
 
 module.exports = function(cb, options) {
     //options were provided as the first argument, no callback handler
@@ -18,7 +19,7 @@ module.exports = function(cb, options) {
     if (typeof options.id === 'string')
         buttonId = options.id;
     else
-        buttonId = 'toggleButton';
+        buttonId = 'toggleButton' + idCounter++;
 
     var buttonWidth = hasWidth ? options.width : window.innerWidth;
     var buttonHeight = hasHeight ? options.height : window.innerHeight;
